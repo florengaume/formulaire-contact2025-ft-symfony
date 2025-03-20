@@ -1,7 +1,7 @@
 
 FROM php:8.3-fpm
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y bash\
     libzip-dev zip git unzip libpq-dev wget \
     && docker-php-ext-install pdo pdo_mysql zip
 
