@@ -1,15 +1,22 @@
 
-/vendor/
-/var/
-/.env.local
-.env.prod
-.env.test
-.env.dev
-node_modules/
-/public/assets/
-/assets-map.json
+/app/vendor/
+/app/var/
+/app./.env.local
+/app/.env.prod
+/app/.env.test
+/app/.env.dev
+/app/node_modules/
+/app/public/assets/
+/app/assets-map.json
 /.DS_Store
 .idea/
 *.log
-/build/
-/coverage/
+/app/build/
+/app/coverage/
+
+# Docker
+.docker/
+/docker-compose.override.yml
+
+# Composer
+composer.phar
