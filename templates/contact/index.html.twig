@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulaire de contact France Travail</title>
+    {{ importmap('app') }}
+    <style>
+        body { background: #fff; padding: 20px; font-family: Arial, sans-serif; }
+        .form-control { width: 100%; padding: 8px; margin-bottom: 10px; }
+        .btn { padding: 10px 20px; background: #007bff; color: white; border: none; }
+        .flash-success { background: #d4edda; color: #155724; padding: 10px; }
+        .flash-error { background: #f8d7da; color: #721c24; padding: 10px; }
+    </style>
+</head>
+<body>
+
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="flash-{{ label }}">{{ message }}</div>
+    {% endfor %}
+{% endfor %}
+
+<h2>Contactez-nous</h2>
+
+{{ form_start(form) }}
+    <div>{{ form_label(form.nom) }} {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}</div>
+    <div>{{ form_label(form.prenom) }} {{ form_widget(form.prenom, {'attr': {'class': 'form-control'}}) }}</div>
+    <div>{{ form_label(form.vousEtes) }} {{ form_widget(form.vousEtes, {'attr': {'class': 'form-control', 'id':'contact_vousEtes'}}) }}</div>
+
+    <div id="societe-field">{{ form_label(form.nomSociete) }} {{ form_widget(form.nomSociete, {'attr': {'class': 'form-control'}}) }}</div>
+    <div id="media-field">{{ form_label(form.media) }} {{ form_widget(form.media, {'attr': {'class': 'form-control'}}) }}</div>
+
+    <div>{{ form_label(form.email) }} {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}</div>
+    <div>{{ form_label(form.message) }} {{ form_widget(form.message, {'attr': {'class': 'form-control'}}) }}</div>
+
+    <button type="submit" class="btn">Envoyer</button>
+{{ form_end(form) }}
+
+<script>
+    const select = document.getElementById('contact_vousEtes');
+    const societeField = document.getElementById('societe-field');
+    const mediaField = document.getElementById('media-field');
+
+    function toggleFields() {
+        const value = select.value;
+        societeField.style.display = (value === 'societe' || value === 'partenaire') ? 'block' : 'none';
+        mediaField.style.display = (value === 'journaliste') ? 'block' : 'none';
+    }
+
+    toggleFields();
+    select.addEventListener('change', toggleFields);
+</script>
+
+</body>
+</html>
